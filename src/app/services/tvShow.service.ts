@@ -14,7 +14,7 @@ export class TvShowService {
 
 
   private allTvShows$: Observable<TvShow[]>[] = [
-    this.getTvShowsByType(popular)
+    this.getTvShowsByType(popular,15)
   ];
 
   private allTvShowsTitle: string[] = [this.popularTvShowsTitle];

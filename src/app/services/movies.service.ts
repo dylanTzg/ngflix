@@ -15,8 +15,8 @@ export class MoviesService {
 
 
   private AllMovies$: Observable<Movie[]>[] = [
-    this.getMoviesByType(upComing),
-    this.getMoviesByType(topRated)
+    this.getMoviesByType(upComing,15),
+    this.getMoviesByType(topRated,15)
   ];
 
   private AllMoviesTitle: string[] = [this.upComingMovieTitle, this.topRatedMovieTitle];
