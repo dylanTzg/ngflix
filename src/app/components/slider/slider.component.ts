@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../services/movies.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {baseImageURL} from "../../constants/images-sizes";
-import {MoviesResponse} from "../../models/movie";
+import {Movie, MoviesResponse} from "../../models/movie";
+import {popular} from "../../constants/movie-type";
 
 @Component({
   selector: 'app-slider',
@@ -16,7 +17,7 @@ import {MoviesResponse} from "../../models/movie";
 })
 export class SliderComponent implements OnInit {
 
-  popularMovies: MoviesResponse | undefined;
+  popularMovies: Movie[] | undefined;
 
   slideIndex: number = 0;
 
@@ -30,7 +31,7 @@ export class SliderComponent implements OnInit {
   }
 
   getPopularMovies() {
-    this.moviesService.getPopularMovies().subscribe((data) => {
+    this.moviesService.getMoviesByType(popular).subscribe((data) => {
       this.popularMovies = data;
     });
   }
@@ -39,7 +40,7 @@ export class SliderComponent implements OnInit {
     setInterval(() => {
       this.slideIndex++;
       if (this.popularMovies)
-        if (this.slideIndex > this.popularMovies?.results.length - 1) {
+        if (this.slideIndex > this.popularMovies?.length - 1) {
           this.slideIndex = 0;
         }
     }, 5000);

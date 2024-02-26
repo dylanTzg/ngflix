@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {MoviesService} from "../../services/movies.service";
+import {Observable} from "rxjs";
+import {Movie, MoviesResponse} from "../../models/movie";
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,14 @@ import {MoviesService} from "../../services/movies.service";
 })
 export class HomeComponent {
 
-  upcomingMovies$ = this.moviesService.getUpcomingMovies();
-  upcomingMovieTitle : string = "Upcoming Movies";
+  AllMovies$: Observable<Movie[]>[] = this.moviesService.getAllMovies$() ;
+
+  AllMoviesTitle: string[] = this.moviesService.getAllMoviesTitle();
   constructor(private moviesService: MoviesService){
   }
+
+
+
+
 
 }

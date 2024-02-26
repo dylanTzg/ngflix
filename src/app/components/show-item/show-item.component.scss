@@ -11,6 +11,7 @@
     transform: scale(1.05);
     transform-origin: center;
     will-change: transform;
+    cursor: pointer;
   }
 
   &:active {
