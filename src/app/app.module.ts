@@ -13,6 +13,7 @@ import {MoviesService} from "./services/movies.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { BannerComponent } from './components/banner/banner.component';
 import { ShowItemComponent } from './components/show-item/show-item.component';
+import {TvShowService} from "./services/tvShow.service";
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { ShowItemComponent } from './components/show-item/show-item.component';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [MoviesService],
+  providers: [MoviesService, TvShowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

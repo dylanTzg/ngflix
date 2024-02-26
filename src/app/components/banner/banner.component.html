@@ -2,7 +2,15 @@
   <h1 class="banner_title">{{ title }}</h1>
   <div class="grid">
     <div class="col-2" *ngFor="let movie of movies">
-      <app-show-item [showItem] = movie></app-show-item>
+      <app-show-item [showMovie]=movie></app-show-item>
+    </div>
+  </div>
+</div>
+<div class="banner container" *ngIf="tvShows">
+  <h1 class="banner_title">{{ title }}</h1>
+  <div class="grid">
+    <div class="col-2" *ngFor="let tvShows of tvShows ">
+      <app-show-item [showTvShow]=tvShows></app-show-item>
     </div>
   </div>
 </div>

@@ -1,13 +1,14 @@
-<a class="show-item" *ngIf="showItem">
+<a class="show-item" *ngIf="showTvShow ||showMovie">
   <div class="show-item-rating">
     <i class="pi pi-star-fill"></i>
-    <span> {{ showItem?.vote_average }}</span>
+    <span> {{ showTvShow?.vote_average || showMovie?.vote_average }}</span>
     <span>/10</span>
   </div>
   <div class="show-item-image">
-    <img [src]="baseImageURL + showItem?.backdrop_path" [alt]="showItem?.original_title">
+    <img *ngIf="showTvShow" [src]="baseImageURL + showTvShow.poster_path" [alt]="showTvShow.name">
+    <img *ngIf="showMovie" [src]="baseImageURL + showMovie.backdrop_path" [alt]="showMovie.original_title">
   </div>
   <div class="show-item-title">
-    {{ showItem?.title }}
+    {{ showTvShow?.name || showMovie?.title }}
   </div>
 </a>

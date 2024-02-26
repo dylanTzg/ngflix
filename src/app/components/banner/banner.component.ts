@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Movie} from "../../models/movie";
+import {TvShow} from "../../models/tvShow";
 
 
 @Component({
@@ -10,5 +11,6 @@ import {Movie} from "../../models/movie";
 export class BannerComponent {
   @Input() title: string = "";
   @Input() movies: Movie[] | undefined;
+  @Input() tvShows: TvShow[] | undefined;
 
 }

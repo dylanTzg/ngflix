@@ -10,8 +10,8 @@ export class MoviesService {
   apiUrl: string = "https://api.themoviedb.org/3";
   apiKey: string = "4be688387611a7bf9b32a65d7972cc23"
 
-  upComingMovieTitle: string = "Up Coming";
-  topRatedMovieTitle: string = "Top Rated";
+  private upComingMovieTitle: string = "Up Coming";
+  private topRatedMovieTitle: string = "Top Rated";
 
 
   private AllMovies$: Observable<Movie[]>[] = [
@@ -24,9 +24,9 @@ export class MoviesService {
   constructor(private http: HttpClient) {
   }
 
-  getMoviesByType(type: string) {
+  getMoviesByType(type: string, count = 20) {
     return this.http.get<MoviesResponse>(this.apiUrl + "/movie/" + type + "?api_key=" + this.apiKey)
-      .pipe(map((response: MoviesResponse) => response.results.slice(0, 10)));
+      .pipe(map((response: MoviesResponse) => response.results.slice(0, count)));
   }
 
   getAllMoviesTitle(): string[] {

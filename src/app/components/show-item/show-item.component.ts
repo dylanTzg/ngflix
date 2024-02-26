@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Movie} from "../../models/movie";
 import {baseImageURL780} from '../../constants/images-sizes';
+import {TvShow} from "../../models/tvShow";
 
 @Component({
   selector: 'app-show-item',
@@ -8,7 +9,8 @@ import {baseImageURL780} from '../../constants/images-sizes';
   styleUrl: './show-item.component.scss'
 })
 export class ShowItemComponent {
-  @Input() showItem: Movie | undefined;
+  @Input() showMovie: Movie | undefined;
+  @Input() showTvShow: TvShow | undefined;
   protected readonly baseImageURL = baseImageURL780;
 
 }

@@ -1,8 +1,11 @@
 <app-slider></app-slider>
-<ng-container *ngFor="let movie$ of AllMovies$; index as i">
+<ng-container *ngFor="let movie$ of allMovies$; index as i">
   <ng-container *ngIf="movie$ | async as movie">
-    <app-banner [title]="AllMoviesTitle[i]"  [movies]="movie"></app-banner>
+    <app-banner [title]="allMoviesTitle[i]" [movies]="movie"></app-banner>
   </ng-container>
 </ng-container>
-
-
+<ng-container *ngFor="let tvShow$ of allTvShows$; index as i">
+  <ng-container *ngIf="tvShow$ | async as tvShow">
+    <app-banner [title]="allTvShowsTitle[i]" [tvShows]="tvShow"></app-banner>
+  </ng-container>
+</ng-container>

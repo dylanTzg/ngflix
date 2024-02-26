@@ -1,7 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {MoviesService} from "../../services/movies.service";
 import {Observable} from "rxjs";
-import {Movie, MoviesResponse} from "../../models/movie";
+import {Movie} from "../../models/movie";
+import {TvShowService} from "../../services/tvShow.service";
+import {TvShow} from "../../models/tvShow";
 
 @Component({
   selector: 'app-home',
@@ -10,14 +12,17 @@ import {Movie, MoviesResponse} from "../../models/movie";
 })
 export class HomeComponent {
 
-  AllMovies$: Observable<Movie[]>[] = this.moviesService.getAllMovies$() ;
+  allMovies$: Observable<Movie[]>[] = this.moviesService.getAllMovies$();
 
-  AllMoviesTitle: string[] = this.moviesService.getAllMoviesTitle();
-  constructor(private moviesService: MoviesService){
+  allMoviesTitle: string[] = this.moviesService.getAllMoviesTitle();
+
+
+  allTvShows$: Observable<TvShow[]>[] = this.tvShowService.getAllTvShows$();
+
+  allTvShowsTitle: string[] = this.tvShowService.getAllTvShowsTitle();
+
+  constructor(private moviesService: MoviesService, private tvShowService: TvShowService) {
   }
-
-
-
 
 
 }
