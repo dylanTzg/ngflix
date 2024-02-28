@@ -29,6 +29,11 @@ export class MoviesService {
       .pipe(map((response: MoviesResponse) => response.results.slice(0, count)));
   }
 
+  getMovieById(id: string) {
+    return this.http.get<Movie>(this.apiUrl + "/movie/" + id + "?api_key=" + this
+    .apiKey);
+  }
+
   getAllMoviesTitle(): string[] {
     return this.AllMoviesTitle;
   }

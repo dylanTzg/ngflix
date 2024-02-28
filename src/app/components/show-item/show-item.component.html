@@ -1,4 +1,4 @@
-<a class="show-item" *ngIf="showTvShow ||showMovie">
+<a class="show-item" *ngIf="showTvShow || showMovie" [routerLink]="'detail/'+ (showTvShow?.id || showMovie?.id)">
   <div class="show-item-rating">
     <i class="pi pi-star-fill"></i>
     <span> {{ showTvShow?.vote_average || showMovie?.vote_average }}</span>
