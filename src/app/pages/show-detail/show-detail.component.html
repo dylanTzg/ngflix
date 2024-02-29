@@ -1,4 +1,18 @@
-<p>show-detail {{showId}}</p>
-<pre>
-  {{show$ | async | json}}
-</pre>
+<ng-container *ngIf="show$">
+  <ng-container *ngIf="show$ | async as show">
+    <app-slider [slides]="[show]"></app-slider>
+    <pre>
+      {{ show$ | async | json }}
+    </pre>
+  </ng-container>
+</ng-container>
+<ng-container *ngIf="tv$">
+  <ng-container *ngIf="tv$ | async as show">
+    <app-slider [slides]="[show]"></app-slider>
+    <pre>
+       {{ tv$ | async | json }}
+     </pre>
+  </ng-container>
+</ng-container>
+
+

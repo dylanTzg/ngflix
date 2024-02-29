@@ -15,8 +15,8 @@ export class MoviesService {
 
 
   private AllMovies$: Observable<Movie[]>[] = [
-    this.getMoviesByType(upComing,15),
-    this.getMoviesByType(topRated,15)
+    this.getMoviesByType(upComing, 15),
+    this.getMoviesByType(topRated, 15)
   ];
 
   private AllMoviesTitle: string[] = [this.upComingMovieTitle, this.topRatedMovieTitle];
@@ -31,7 +31,7 @@ export class MoviesService {
 
   getMovieById(id: string) {
     return this.http.get<Movie>(this.apiUrl + "/movie/" + id + "?api_key=" + this
-    .apiKey);
+      .apiKey);
   }
 
   getAllMoviesTitle(): string[] {

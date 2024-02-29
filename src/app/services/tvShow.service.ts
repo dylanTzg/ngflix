@@ -14,7 +14,7 @@ export class TvShowService {
 
 
   private allTvShows$: Observable<TvShow[]>[] = [
-    this.getTvShowsByType(popular,15)
+    this.getTvShowsByType(popular, 15)
   ];
 
   private allTvShowsTitle: string[] = [this.popularTvShowsTitle];
@@ -27,6 +27,10 @@ export class TvShowService {
       .pipe(map((response: TvShowResponse) => response.results.slice(0, count)));
   }
 
+  getTvShowById(id: string): Observable<TvShow> {
+    return this.http.get<TvShow>(this.apiUrl + "/tv/" + id + "?api_key=" + this.apiKey)
+  }
+
   getAllTvShowsTitle(): string[] {
     return this.allTvShowsTitle;
   }
@@ -34,6 +38,5 @@ export class TvShowService {
   getAllTvShows$(): Observable<TvShow[]>[] {
     return this.allTvShows$;
   }
-
 
 }

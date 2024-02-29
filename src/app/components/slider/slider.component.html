@@ -1,32 +1,30 @@
-<div class="slider" *ngIf="popularMovies as movies">
-  <ng-container *ngFor="let movie of movies; let movieIndex = index" @slideFade>
-    <div class="slide"
-         *ngIf="movieIndex === slideIndex" @slideFade>
+<div class="slider" *ngIf="slides">
+  <ng-container *ngFor="let slide of slides; let showIndex = index" @slideFade>
+    <div class="slide" *ngIf="slideIndex === showIndex">
       <div class="slide-bg">
-        <img [src]="baseImageURL + movie.backdrop_path" [alt]="movie.original_title">
+        <img [src]="baseImageURL + slide.backdrop_path" [alt]="getSlideTitle(slide)">
       </div>
       <div class="slide-pane">
-        <h2 class="title">{{ movie.original_title }}</h2>
+        <h2 class="title">{{ getSlideTitle(slide)}}</h2>
         <div class="meta mb-4">
           <div class="rating mb-1">
             <i class="pi pi-star-fill"></i>
-            <span>{{ movie.vote_average }}</span>
+            <span>{{ slide.vote_average }}</span>
             <span>/10</span>
           </div>
           <div class="votes mb-1">
             <i class="pi pi-users"></i>
-            <span>{{ movie.popularity }}</span>
+            <span>{{ slide.popularity }}</span>
           </div>
           <div class="release-date">
             <i class="pi pi-calendar"></i>
-            <span>{{ movie.release_date | date:"MMMM dd yyyy" }}</span>
+            <span>{{ getReleaseDate(slide) | date:"MMMM dd yyyy" }}</span>
           </div>
         </div>
         <div class="description">
-          <p>{{ movie.overview }}</p>
+          <p>{{ slide.overview }}</p>
         </div>
       </div>
     </div>
   </ng-container>
 </div>
-

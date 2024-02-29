@@ -1,14 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {MoviesService} from "../../services/movies.service";
+import {Component, Input, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {baseImageURL} from "../../constants/images-sizes";
-import {Movie, MoviesResponse} from "../../models/movie";
-import {popular} from "../../constants/movie-type";
+import {Movie} from "../../models/movie";
+import {TvShow} from "../../models/tvShow";
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrl: './slider.component.scss',
+  styleUrls: ['./slider.component.scss'],
   animations: [
     trigger('slideFade', [
       state("void", style({opacity: 0})),
@@ -17,35 +16,41 @@ import {popular} from "../../constants/movie-type";
 })
 export class SliderComponent implements OnInit {
 
-  popularMovies: Movie[] | undefined;
+  @Input() slides: (Movie | TvShow)[]  = [];
 
   slideIndex: number = 0;
 
-
-  constructor(private moviesService: MoviesService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.getPopularMovies();
     this.nextSlide();
-  }
-
-  getPopularMovies() {
-    this.moviesService.getMoviesByType(popular).subscribe((data) => {
-      this.popularMovies = data;
-    });
   }
 
   nextSlide() {
     setInterval(() => {
       this.slideIndex++;
-      if (this.popularMovies)
-        if (this.slideIndex > this.popularMovies?.length - 1) {
-          this.slideIndex = 0;
-        }
+      if (this.slideIndex >= this.slides.length) {
+        this.slideIndex = 0;
+      }
     }, 5000);
   }
 
   protected readonly baseImageURL = baseImageURL;
-}
 
+  getSlideTitle(slide: Movie | TvShow): string {
+    if ('original_title' in slide) {
+      return (slide as Movie).original_title;
+    } else {
+      return (slide as TvShow).original_name;
+    }
+  }
+
+  getReleaseDate(slide: Movie | TvShow): string {
+    if ('release_date' in slide) {
+      return (slide as Movie).release_date;
+    } else {
+      return (slide as TvShow).first_air_date;
+    }
+  }
+}

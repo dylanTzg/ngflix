@@ -16,6 +16,7 @@ export class HomeComponent {
 
   allMoviesTitle: string[] = this.moviesService.getAllMoviesTitle();
 
+  popularMovies$: Observable<Movie[]> = this.moviesService.getMoviesByType('popular');
 
   allTvShows$: Observable<TvShow[]>[] = this.tvShowService.getAllTvShows$();
 

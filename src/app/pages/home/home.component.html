@@ -1,4 +1,6 @@
-<app-slider></app-slider>
+<ng-container *ngIf="popularMovies$ | async as movies">
+  <app-slider [slides]="movies" ></app-slider>
+</ng-container>
 <ng-container *ngFor="let movie$ of allMovies$; index as i">
   <ng-container *ngIf="movie$ | async as movie">
     <app-banner [title]="allMoviesTitle[i]" [movies]="movie"></app-banner>
