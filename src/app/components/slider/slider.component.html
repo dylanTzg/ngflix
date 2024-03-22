@@ -1,6 +1,6 @@
 <div class="slider" *ngIf="slides">
-  <ng-container *ngFor="let slide of slides; let showIndex = index" @slideFade>
-    <div class="slide" *ngIf="slideIndex === showIndex">
+  <ng-container *ngFor="let slide of slides; let showIndex = index">
+    <div class="slide" *ngIf="slideIndex === showIndex" @slideFade>
       <div class="slide-bg">
         <img [src]="baseImageURL + slide.backdrop_path" [alt]="getSlideTitle(slide)">
       </div>

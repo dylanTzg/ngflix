@@ -10,7 +10,7 @@ import {TvShow} from "../../models/tvShow";
   styleUrls: ['./slider.component.scss'],
   animations: [
     trigger('slideFade', [
-      state("void", style({opacity: 0})),
+      state("void", style({ opacity: 0 })),
       transition("void <=> *", [animate('1s')]),
     ])]
 })
@@ -24,15 +24,19 @@ export class SliderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nextSlide();
+    this.startSlideShow();
   }
 
   nextSlide() {
+    this.slideIndex++;
+    if (this.slideIndex >= this.slides.length) {
+      this.slideIndex = 0;
+    }
+  }
+
+  startSlideShow() {
     setInterval(() => {
-      this.slideIndex++;
-      if (this.slideIndex >= this.slides.length) {
-        this.slideIndex = 0;
-      }
+      this.nextSlide();
     }, 5000);
   }
 
